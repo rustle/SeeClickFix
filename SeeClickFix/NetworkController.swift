@@ -69,9 +69,24 @@ public struct Area : Location {
     }
 }
 
-fileprivate extension URLSession {
-    fileprivate func scf_dataTaskPromise(with request: URLRequest) -> Promise<(Data, HTTPURLResponse)> {
-        let promise = Promise<(Data, HTTPURLResponse)>()
+public struct SCFURLResult {
+    public let data: Data
+    public let response: HTTPURLResponse
+}
+
+extension SCFURLResult : Equatable {
+    public static func ==(lhs: SCFURLResult, rhs: SCFURLResult) -> Bool {
+        return lhs.response == rhs.response && lhs.data == rhs.data
+    }
+}
+
+public protocol SCFURLSession {
+    func scf_dataTaskPromise(with request: URLRequest) -> Promise<SCFURLResult>
+}
+
+extension URLSession : SCFURLSession {
+    public func scf_dataTaskPromise(with request: URLRequest) -> Promise<SCFURLResult> {
+        let promise = Promise<SCFURLResult>()
         let task = dataTask(with: request) { data, response, error in
             if let error = error {
                 promise.reject(error)
@@ -86,7 +101,7 @@ fileprivate extension URLSession {
                     promise.reject(NSError())
                     return
                 }
-                promise.fulfill((data, httpResponse))
+                promise.fulfill(SCFURLResult(data: data, response: httpResponse))
             } else {
                 preconditionFailure()
             }
@@ -111,7 +126,6 @@ public class NetworkController {
         fileprivate init(task: URLSessionTask) {
             self.task = task
         }
-
     }
     private enum NetworkError : Error {
         case httpStatus(code: Int)
@@ -220,17 +234,23 @@ public class NetworkController {
     private func reportDetailsURL(identifier: Int) -> URL {
         return Constants.reportDetailsBaseURL.appendingPathComponent("\(identifier)")
     }
-    private let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
-    private func unpack(_ data: Data, _ response: HTTPURLResponse) throws -> Promise<Data> {
-        switch response.statusCode {
+    private let session: SCFURLSession
+    private func unpack(_ result: SCFURLResult) throws -> Promise<Data> {
+        switch result.response.statusCode {
         case 200:
-            return Promise(value: data)
+            return Promise(value: result.data)
         default:
-            throw NetworkError.httpStatus(code: response.statusCode)
+            throw NetworkError.httpStatus(code: result.response.statusCode)
         }
     }
+    public init() {
+        session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
+    }
+    public init(session: SCFURLSession) {
+        self.session = session
+    }
     @discardableResult
-    public func dataTask(request: URLRequest) -> Promise<(Data, HTTPURLResponse)> {
+    public func dataTask(request: URLRequest) -> Promise<SCFURLResult> {
         return session.scf_dataTaskPromise(with: request)
     }
     @discardableResult
@@ -244,10 +264,8 @@ public class NetworkController {
             request.setValue(value, forHTTPHeaderField: "Authorization")
             return request
         }()
-        return session.scf_dataTaskPromise(with: request)
-        .then() {
-            let (data, response) = $0
-            return try self.unpack(data, response)
+        return session.scf_dataTaskPromise(with: request).then() {
+            return try self.unpack($0)
         }
     }
     @discardableResult
@@ -259,10 +277,9 @@ public class NetworkController {
             return Promise(error: error)
         }
         let request = URLRequest(url: issuesURL)
-        return session.scf_dataTaskPromise(with: request).then({
-            let (data, response) = $0
-            return try self.unpack(data, response)
-        })
+        return session.scf_dataTaskPromise(with: request).then {
+            return try self.unpack($0)
+        }
     }
     @discardableResult
     public func reportTypes(location: Location) -> Promise<Data> {
@@ -272,16 +289,15 @@ public class NetworkController {
         } catch let error {
             return Promise(error: error)
         }
-        return session.scf_dataTaskPromise(with: request).then({
-            let (data, response) = $0
-            return try self.unpack(data, response)
-        })
+        return session.scf_dataTaskPromise(with: request).then {
+            return try self.unpack($0)
+        }
     }
+    @discardableResult
     public func reportDetails(identifier: Int) -> Promise<Data> {
         let request = URLRequest(url: reportDetailsURL(identifier: identifier))
-        return session.scf_dataTaskPromise(with: request).then({
-            let (data, response) = $0
-            return try self.unpack(data, response)
-        })
+        return session.scf_dataTaskPromise(with: request).then {
+            return try self.unpack($0)
+        }
     }
 }
