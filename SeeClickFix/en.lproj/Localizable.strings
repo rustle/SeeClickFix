@@ -1,0 +1,6 @@
+/* 
+  Localizable.strings
+  Copyright © 2017 Detroit Block Works. All rights reserved.
+*/
+
+NetworkController.UnauthorizedError = "HTTP Status Code 401";
