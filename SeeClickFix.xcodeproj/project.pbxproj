@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		91BF2D5A1FED992E00FB993D /* SeeClickFix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91BF2D501FED992E00FB993D /* SeeClickFix.framework */; };
-		91BF2D5F1FED992E00FB993D /* SeeClickFixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF2D5E1FED992E00FB993D /* SeeClickFixTests.swift */; };
+		91BF2D5F1FED992E00FB993D /* SeeClickFixNetworkControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF2D5E1FED992E00FB993D /* SeeClickFixNetworkControllerTests.swift */; };
 		91BF2D611FED992E00FB993D /* SeeClickFix.h in Headers */ = {isa = PBXBuildFile; fileRef = 91BF2D531FED992E00FB993D /* SeeClickFix.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91BF2D721FED9ADB00FB993D /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF2D6A1FED9ADA00FB993D /* NetworkController.swift */; };
 		91BF2D731FED9ADB00FB993D /* Issues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF2D6B1FED9ADA00FB993D /* Issues.swift */; };
@@ -36,7 +36,7 @@
 		91BF2D531FED992E00FB993D /* SeeClickFix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeeClickFix.h; sourceTree = "<group>"; };
 		91BF2D541FED992E00FB993D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91BF2D591FED992E00FB993D /* SeeClickFixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeeClickFixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		91BF2D5E1FED992E00FB993D /* SeeClickFixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeClickFixTests.swift; sourceTree = "<group>"; };
+		91BF2D5E1FED992E00FB993D /* SeeClickFixNetworkControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeClickFixNetworkControllerTests.swift; sourceTree = "<group>"; };
 		91BF2D601FED992E00FB993D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91BF2D6A1FED9ADA00FB993D /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		91BF2D6B1FED9ADA00FB993D /* Issues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issues.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		91BF2D5D1FED992E00FB993D /* SeeClickFixTests */ = {
 			isa = PBXGroup;
 			children = (
-				91BF2D5E1FED992E00FB993D /* SeeClickFixTests.swift */,
+				91BF2D5E1FED992E00FB993D /* SeeClickFixNetworkControllerTests.swift */,
 				91BF2D601FED992E00FB993D /* Info.plist */,
 			);
 			path = SeeClickFixTests;
@@ -240,7 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91BF2D5F1FED992E00FB993D /* SeeClickFixTests.swift in Sources */,
+				91BF2D5F1FED992E00FB993D /* SeeClickFixNetworkControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

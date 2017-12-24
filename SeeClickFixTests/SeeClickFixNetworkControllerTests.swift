@@ -1,15 +1,13 @@
 //
-//  SeeClickFixTests.swift
-//  SeeClickFixTests
+//  SeeClickFixNetworkControllerTests.swift
 //
-//  Created by Doug Russell on 12/22/17.
 //  Copyright © 2017 Detroit Block Works. All rights reserved.
 //
 
 import XCTest
 @testable import SeeClickFix
 
-class SeeClickFixTests: XCTestCase {
+class SeeClickFixNetworkControllerTests : XCTestCase {
     enum MockURLSessionError : Error {
         case expectationMissing
         case requestMismatch
@@ -37,7 +35,7 @@ class SeeClickFixTests: XCTestCase {
         }
     }
     static let mockSession = MockURLSession()
-    static let mockNetwork = NetworkController(session: SeeClickFixTests.mockSession)
+    static let mockNetwork = NetworkController(session: SeeClickFixNetworkControllerTests.mockSession)
     func testMockSession() {
         guard let url = URL(string: "http://example.com") else {
             XCTFail()
@@ -48,11 +46,11 @@ class SeeClickFixTests: XCTestCase {
             return
         }
         let result = SCFURLResult(data: Data(), response: response)
-        SeeClickFixTests.mockSession.expectedResult = result
+        SeeClickFixNetworkControllerTests.mockSession.expectedResult = result
         let request = URLRequest(url: url)
-        SeeClickFixTests.mockSession.expectedRequest = request
+        SeeClickFixNetworkControllerTests.mockSession.expectedRequest = request
         let expectation = self.expectation(description: #function)
-        SeeClickFixTests.mockSession.scf_dataTaskPromise(with: request)
+        SeeClickFixNetworkControllerTests.mockSession.scf_dataTaskPromise(with: request)
             .then() {
                 if result == $0 {
                     expectation.fulfill()
@@ -74,10 +72,10 @@ class SeeClickFixTests: XCTestCase {
         }
         var request = URLRequest(url: url)
         request.setValue("Basic dGVzdDp0ZXN0", forHTTPHeaderField: "Authorization")
-        SeeClickFixTests.mockSession.expectedRequest = request
-        SeeClickFixTests.mockSession.expectedResult = SCFURLResult(data: Data(), response: response)
+        SeeClickFixNetworkControllerTests.mockSession.expectedRequest = request
+        SeeClickFixNetworkControllerTests.mockSession.expectedResult = SCFURLResult(data: Data(), response: response)
         let expectation = self.expectation(description: #function)
-        SeeClickFixTests.mockNetwork.login(user: "test", password: "test")
+        SeeClickFixNetworkControllerTests.mockNetwork.login(user: "test", password: "test")
             .then() { _ in
                 expectation.fulfill()
             }
@@ -96,11 +94,11 @@ class SeeClickFixTests: XCTestCase {
             return
         }
         let result = SCFURLResult(data: Data(), response: response)
-        SeeClickFixTests.mockSession.setURL(url)
-        SeeClickFixTests.mockSession.expectedResult = result
+        SeeClickFixNetworkControllerTests.mockSession.setURL(url)
+        SeeClickFixNetworkControllerTests.mockSession.expectedResult = result
         let location = Point(latitude: 0.0, longitude: 0.0)
         let expectation = self.expectation(description: #function)
-        SeeClickFixTests.mockNetwork.issues(location: location, page: 0, count: 100)
+        SeeClickFixNetworkControllerTests.mockNetwork.issues(location: location, page: 0, count: 100)
             .then() {
                 if result.data == $0 {
                     expectation.fulfill()
@@ -121,11 +119,11 @@ class SeeClickFixTests: XCTestCase {
             return
         }
         let result = SCFURLResult(data: Data(), response: response)
-        SeeClickFixTests.mockSession.setURL(url)
-        SeeClickFixTests.mockSession.expectedResult = result
+        SeeClickFixNetworkControllerTests.mockSession.setURL(url)
+        SeeClickFixNetworkControllerTests.mockSession.expectedResult = result
         let location = Point(latitude: 0.0, longitude: 0.0)
         let expectation = self.expectation(description: #function)
-        SeeClickFixTests.mockNetwork.reportTypes(location: location)
+        SeeClickFixNetworkControllerTests.mockNetwork.reportTypes(location: location)
             .then() { _ in
                 expectation.fulfill()
             }
@@ -144,10 +142,10 @@ class SeeClickFixTests: XCTestCase {
             return
         }
         let result = SCFURLResult(data: Data(), response: response)
-        SeeClickFixTests.mockSession.setURL(url)
-        SeeClickFixTests.mockSession.expectedResult = result
+        SeeClickFixNetworkControllerTests.mockSession.setURL(url)
+        SeeClickFixNetworkControllerTests.mockSession.expectedResult = result
         let expectation = self.expectation(description: #function)
-        SeeClickFixTests.mockNetwork.reportDetails(identifier: 0)
+        SeeClickFixNetworkControllerTests.mockNetwork.reportDetails(identifier: 0)
             .then() { _ in
                 expectation.fulfill()
             }
