@@ -40,7 +40,21 @@ public struct Issue : Codable, IdentifierProviding {
     public let updated_at: Date?
     public let shortened_url: URL?
     public let html_url: URL
+    public let comment_url: URL?
+    public let flag_url: URL?
     public let url: URL
+    public let transitions: Transitions
+    public struct Transitions : Codable {
+        public let close_url: URL?
+    }
+    public let request_type: RequestType
+    public struct RequestType : Codable {
+        public let id: Int
+        public let title: String
+        public let organization: String?
+        public let url: URL
+        public let related_issues_url: URL?
+    }
     public let reporter: Reporter
     public struct Reporter : Codable {
         public let id: Int?
