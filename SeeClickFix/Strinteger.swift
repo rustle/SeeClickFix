@@ -46,3 +46,34 @@ public enum Strinteger : Codable {
         throw StrintegerError.conversionError
     }
 }
+
+extension Strinteger : Equatable {
+    public static func ==(lhs: Strinteger, rhs: Strinteger) -> Bool {
+        switch lhs {
+        case let .integer(leftValue):
+            switch rhs {
+            case let .integer(rightValue):
+                return leftValue == rightValue
+            case .string:
+                do {
+                    let convertedValue = try rhs.convert()
+                    return leftValue == convertedValue
+                } catch {
+                    return false
+                }
+            }
+        case let .string(leftValue):
+            switch rhs {
+            case let .integer(rightValue):
+                do {
+                    let convertedValue = try lhs.convert()
+                    return rightValue == convertedValue
+                } catch {
+                    return false
+                }
+            case let .string(rightValue):
+                return leftValue == rightValue
+            }
+        }
+    }
+}

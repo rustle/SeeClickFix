@@ -19,6 +19,8 @@
 		91BF2D791FED9ADB00FB993D /* JSONContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF2D711FED9ADB00FB993D /* JSONContainer.swift */; };
 		91BF2D7C1FED9AE900FB993D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91BF2D7A1FED9AE900FB993D /* Localizable.strings */; };
 		91BF2D7E1FEDEEFF00FB993D /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF2D7D1FEDEEFF00FB993D /* Promise.swift */; };
+		91BF2DA91FF0082F00FB993D /* SeeClickFixParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF2DA81FF0082F00FB993D /* SeeClickFixParsingTests.swift */; };
+		91BF2DAD1FF00B9D00FB993D /* issues.json in Resources */ = {isa = PBXBuildFile; fileRef = 91BF2DAC1FF00B9D00FB993D /* issues.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		91BF2D711FED9ADB00FB993D /* JSONContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONContainer.swift; sourceTree = "<group>"; };
 		91BF2D7B1FED9AE900FB993D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		91BF2D7D1FEDEEFF00FB993D /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		91BF2DA81FF0082F00FB993D /* SeeClickFixParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeClickFixParsingTests.swift; sourceTree = "<group>"; };
+		91BF2DAC1FF00B9D00FB993D /* issues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = issues.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				91BF2D5E1FED992E00FB993D /* SeeClickFixNetworkControllerTests.swift */,
+				91BF2DA81FF0082F00FB993D /* SeeClickFixParsingTests.swift */,
+				91BF2DAC1FF00B9D00FB993D /* issues.json */,
 				91BF2D601FED992E00FB993D /* Info.plist */,
 			);
 			path = SeeClickFixTests;
@@ -215,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91BF2DAD1FF00B9D00FB993D /* issues.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91BF2D5F1FED992E00FB993D /* SeeClickFixNetworkControllerTests.swift in Sources */,
+				91BF2DA91FF0082F00FB993D /* SeeClickFixParsingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

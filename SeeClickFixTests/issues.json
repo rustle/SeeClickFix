@@ -1,0 +1,66 @@
+{
+	"metadata": {
+		"pagination": {
+			"entries": 439829,
+			"page": 1,
+			"per_page": 20,
+			"pages": 21992,
+			"next_page": 2,
+			"next_page_url": "https://seeclickfix.com/api/v2/issues?address=48219&page=2",
+			"previous_page": null,
+			"previous_page_url": null
+		}
+	},
+	"issues": [{
+		"id": 3978183,
+		"status": "Open",
+		"summary": "Trash / Dumping",
+		"description": "Axis/frontage road for Sterling Hill Drive is full of blown trash and leaves. It's clear the monthly landscaping has not touched this location in a while.",
+		"rating": 1,
+		"lat": 37.9703629214151,
+		"lng": -121.760936975098,
+		"address": "4852-4898 Sterling Hill Dr Antioch, CA 94531, USA",
+		"created_at": "2017-12-24T11:16:34-05:00",
+		"acknowledged_at": null,
+		"closed_at": null,
+		"reopened_at": null,
+		"updated_at": "2017-12-24T11:16:52-05:00",
+		"shortened_url": null,
+		"url": "https://seeclickfix.com/api/v2/issues/3978183",
+		"point": {
+			"type": "Point",
+			"coordinates": [-121.7609369750976, 37.97036292141506]
+		},
+		"html_url": "https://seeclickfix.com/issues/3978183",
+		"request_type": {
+			"id": 18605,
+			"title": "Trash / Dumping",
+			"organization": "City of Antioch",
+			"url": "https://seeclickfix.com/api/v2/request_types/18605",
+			"related_issues_url": "https://seeclickfix.com/api/v2/issues?lat=37.9703629214151&lng=-121.760936975098&request_types=18605&sort=distance"
+		},
+		"comment_url": "https://seeclickfix.com/api/v2/issues/3978183/comments",
+		"flag_url": "https://seeclickfix.com/api/v2/issues/3978183/flag",
+		"transitions": {
+			"close_url": "https://seeclickfix.com/api/v2/issues/3978183/close"
+		},
+		"reporter": {
+			"id": 1440862,
+			"name": "Mike G.",
+			"witty_title": "City Fixer",
+			"avatar": {
+				"full": "https://seeclickfix.com/assets/no-avatar-100-5e06fcc664c6376bbf654cbd67df857ff81918c5f5c6a2345226093147382de9.png",
+				"square_100x100": "https://seeclickfix.com/assets/no-avatar-100-5e06fcc664c6376bbf654cbd67df857ff81918c5f5c6a2345226093147382de9.png"
+			},
+			"role": "Registered User",
+			"civic_points": 3250
+		},
+		"media": {
+			"video_url": null,
+			"image_full": "https://seeclickfix.com/files/issue_images/0093/5793/1514132184511.jpg",
+			"image_square_100x100": "https://seeclickfix.com/files/issue_images/0093/5793/1514132184511_square.jpg",
+			"representative_image_url": "https://seeclickfix.com/files/issue_images/0093/5793/1514132184511_square.jpg"
+		}
+	}],
+	"errors": {}
+}

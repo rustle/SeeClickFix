@@ -30,14 +30,14 @@ public struct Issue : Codable, IdentifierProviding {
     public let summary: String?
     public let description: String?
     public let rating: Int
-    public let latitude: Double?
-    public let longitude: Double?
+    public let lat: Double?
+    public let lng: Double?
     public let address: String?
     public let created_at: Date
     public let acknowledged_at: Date?
     public let closed_at: Date?
-    public let reopened: Date?
-    public let updated: Date?
+    public let reopened_at: Date?
+    public let updated_at: Date?
     public let shortened_url: URL?
     public let html_url: URL
     public let url: URL
