@@ -93,12 +93,12 @@ extension URLSession : SCFURLSession {
             } else if let response = response {
                 guard let httpResponse = response as? HTTPURLResponse else {
                     // TODO: Real error
-                    promise.reject(NSError())
+                    promise.reject(NSError(domain:NSCocoaErrorDomain, code:0, userInfo:nil))
                     return
                 }
                 guard let data = data else {
                     // TODO: Real error
-                    promise.reject(NSError())
+                    promise.reject(NSError(domain:NSCocoaErrorDomain, code:0, userInfo:nil))
                     return
                 }
                 promise.fulfill(SCFURLResult(data: data, response: httpResponse))

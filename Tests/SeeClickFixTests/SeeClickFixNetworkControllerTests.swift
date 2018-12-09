@@ -154,4 +154,10 @@ class SeeClickFixNetworkControllerTests : XCTestCase {
             }
         waitForExpectations(timeout: 1.0, handler: nil)
     }
+    static var allTests = [
+        ("testMockSession", testMockSession),
+        ("testLogin", testIssues),
+        ("testReportDetails", testReportDetails),
+        ("testReportTypes", testReportTypes),
+    ]
 }

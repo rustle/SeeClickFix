@@ -11,10 +11,21 @@ import XCTest
 
 class SeeClickFixParsingTests: XCTestCase {
     func testParseIssues() {
+#if os(macOS)
         guard let url = Bundle(for: SeeClickFixParsingTests.self).url(forResource: "issues", withExtension: "json") else {
             XCTFail()
             return
         }
+#else
+        let path = FileManager.default.currentDirectoryPath.appending("/Tests/SeeClickFixTests/issues.json")
+        let url = URL(fileURLWithPath: path)
+        do {
+            _ = try url.checkResourceIsReachable()
+        } catch {
+            XCTFail(error.localizedDescription)
+            return
+        }
+#endif
         guard let data = try? Data(contentsOf: url) else {
             XCTFail()
             return
@@ -71,4 +82,7 @@ class SeeClickFixParsingTests: XCTestCase {
         XCTAssertEqual(issue.media.image_square_100x100, URL(string: "https://seeclickfix.com/files/issue_images/0093/5793/1514132184511_square.jpg"))
         XCTAssertEqual(issue.media.representative_image_url, URL(string: "https://seeclickfix.com/files/issue_images/0093/5793/1514132184511_square.jpg"))
     }
+    static var allTests = [
+        ("testParseIssues", testParseIssues),
+    ]
 }
